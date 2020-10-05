@@ -7,126 +7,118 @@ import cssLogo from "./images/css_logo.png";
 import jsLogo from "./images/js_logo.png";
 import reactLogo from "./images/react_logo.png";
 
-import {HexaColor} from "./HexaColor"
-
-const userInfo = {
-  name: "Lukasz Jozwik",
-  description: "Senior Developer, Poland",
-  avatar: userImage,
-  skills: ["HTML", "CSS", "JavaScript", ".NET", "Azure", "SharePoint"]
-}
+import { getColor, HexaColor } from "./HexaColor";
 
 // JSX element, header
-const Header = (props) => {
+const Header = ({ welcome, title }) => {
   return (
-  <header>
-    <div className="header-wrapper">
-      <h1>{props.welcome}</h1>
-      <h2>{props.title}</h2>
+    <header>
+      <div className="header-wrapper">
+        <h1>{welcome}</h1>
+        <h2>{title}</h2>
+      </div>
+    </header>
+  );
+};
+
+const UserCard = ({ user: { name, description, avatar, skills } }) => {
+  return (
+    <div className="userCard">
+      <img src={avatar} alt="user" />
+      <h4>{name}</h4>
+      <h5>{description}</h5>
+      <Skills skills={skills} />
     </div>
-  </header>
-)};
-
-const UserCard = (props) => {
-  return (
-  <div className="userCard">
-    <img src={props.user.avatar} alt="user" />
-    <h4>{props.user.name}</h4>
-    <h5>{props.user.description}</h5>
-
-    <Skills skills={props.user.skills}/>
-  </div>
-)};
+  );
+};
 
 const Skills = (props) => {
-  const skillList = props.skills.map((tech) => <span className="skill-pill" key={tech}>{tech}</span>);
-  return (<div className="skills">
-    <h4>Skills</h4>
-    <ul>{skillList}</ul>
-  </div>)
-}
+  const skillList = props.skills.map((tech) => (
+    <span className="skill-pill" key={tech}>
+      {tech}
+    </span>
+  ));
+  return (
+    <div className="skills">
+      <h4>Skills</h4>
+      <ul>{skillList}</ul>
+    </div>
+  );
+};
 
-const techImages = [htmlLogo, cssLogo, jsLogo, reactLogo].map((logo) => (
-  <img src={logo} alt={logo} key={logo}/>
-));
-
-const TechnologiesPanel = () => (
+const TechnologiesPanel = ({ title, techImages }) => (
   <div className="technologies">
-    <h2>Front End Technologies</h2>
+    <h2>{title}</h2>
     <div className="technologies-wrapper">
-    {techImages}
+      {techImages.map((logo) => (
+        <img src={logo} alt={logo} key={logo} />
+      ))}
     </div>
   </div>
 );
 
-// JSX element, main
-const Main = () => (
-  <main>
-    <div className="main-wrapper">
-      <TechnologiesPanel />
-      <UserCard user={userInfo}/>
-    </div>
-  </main>
-);
-
-const copyRight = "Copyright 2020";
-
 // JSX element, footer
-const Footer = () => (
+const Footer = ({ text, copyRight }) => (
   <footer>
     <div className="footer-wrapper">
-      <p>{copyRight}</p>
+      <p>{text} - {copyRight.getFullYear()}</p>
     </div>
   </footer>
 );
 
-const Button = (props) => <button onClick={props.onClick}>{props.text}</button>
+const Button = (props) => <button onClick={props.onClick}>{props.text}</button>;
 
-const showDate = (time) => {
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ]
+// JSX element, main
+const Main = ({ techImages, user, handleTime, greetPeople }) => {
+  console.log(user);
 
-  const month = months[time.getMonth()].slice(0, 3)
-  const year = time.getFullYear()
-  const date = time.getDate()
-  return ` ${month} ${date}, ${year}`
-}
+  return (
+    <main>
+      <div className="main-wrapper">
+        <UserCard user={user} />
+        <Button text="Greet People" onClick={greetPeople} />
+        <Button text="Show Time" onClick={handleTime} />
+        <TechnologiesPanel title= "Front End Technologies" techImages={techImages} />
+      </div>
+    </main>
+  );
+};
 
 // JSX element, app
 const App = () => {
-  const welcome = 'Welcome to 30 Days of React'
-  const title = 'Getting started with React'
+  const welcome = "Welcome to 30 Days of React";
+  const title = "Getting started with React";
+  const date = new Date();
+  const color = getColor();
+  const techImages = [htmlLogo, cssLogo, jsLogo, reactLogo];
+  const user = {
+    name: "Lukasz Jozwik",
+    description: "Senior Developer, Poland",
+    avatar: userImage,
+    skills: ["HTML", "CSS", "JS", "React", "SQL", ".NET", "Azure", "Git"],
+  };
 
   const greetPeople = () => {
-    alert('Welcome to 30 Day Of React Challange, 2020')
-  }
-
+    alert("Welcome to 30 Day Of React Challange, 2020");
+  };
   const handleTime = () => {
-    alert(showDate(new Date()))
-  }
+    alert(new Date());
+  };
 
-  return (  
-  <div className="app">
-    <Header welcome={welcome} title={title}/>
-    <Main />
-    <Button text='Greet People' onClick={greetPeople} />
-    <Button text='Show Time' onClick={handleTime} />
-    <HexaColor />
-    <Footer />
-  </div>
-)};
+  return (
+    <div className="app">
+      <Header welcome={welcome} title={title} />
+      <Main
+        techImages={techImages}
+        user={user}
+        handleTime={handleTime}
+        greetPeople={greetPeople}
+      />
+      <HexaColor color={color} />
+      <Footer text='Lukasz Jozwik' copyRight={date} />
+    </div>
+  );
+};
 
 const rootElement = document.getElementById("root");
 // we render the JSX element using the ReactDOM package
