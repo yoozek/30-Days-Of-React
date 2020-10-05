@@ -15,7 +15,7 @@
 </div>
 </div>
 
-[<< Day 2](../02_Day_Introduction_to_React/02_introduction_to_react.md) | [Day 4 >>](./04_Day_Component/04_components.m)
+[<< Day 2](../02_Day_Introduction_to_React/02_introduction_to_react.md) | [Day 4 >>](./04_Day_Component/04_components.md)
 
 ![30 Days of React banner](../images/30_days_of_react_banner_day_3.jpg)
 
@@ -41,7 +41,7 @@ In the previous section, we learned about JSX and we accessed the React and Reac
 
 ## Node
 
-Node is a JavaScript runtime environment which allows JavaScript to run on the server. Node was created in 2019. Node has played a great role for the growth of JavaScript. The React application starts by default at localhost 3000. The create-react-app has configured a node server for the React Application. That is why we need node and node modules. We will see create-react-app soon.
+Node is a JavaScript runtime environment which allows JavaScript to run on the server. Node was created in 2009. Node has played a great role for the growth of JavaScript. The React application starts by default at localhost 3000. The create-react-app has configured a node server for the React Application. That is why we need node and node modules. We will see create-react-app soon.
 
 If you do have node, install node. Install [node.js](https://nodejs.org/en/).
 
