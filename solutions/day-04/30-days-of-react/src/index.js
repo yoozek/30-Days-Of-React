@@ -8,38 +8,46 @@ import jsLogo from "./images/js_logo.png";
 import reactLogo from "./images/react_logo.png";
 
 import {HexaColor} from "./HexaColor"
-const welcome = "Welcome to 30 Days Of React";
-const title = "Getting Started React";
+
+const userInfo = {
+  name: "Lukasz Jozwik",
+  description: "Senior Developer, Poland",
+  avatar: userImage,
+  skills: ["HTML", "CSS", "JavaScript", ".NET", "Azure", "SharePoint"]
+}
 
 // JSX element, header
-const Header = () => (
+const Header = (props) => {
+  return (
   <header>
     <div className="header-wrapper">
-      <h1>{welcome}</h1>
-      <h2>{title}</h2>
+      <h1>{props.welcome}</h1>
+      <h2>{props.title}</h2>
     </div>
   </header>
-);
+)};
 
-
-const techs = ["HTML", "CSS", "JavaScript", ".NET", "Azure", "SharePoint"];
-const skillsFormatted = techs.map((tech) => <span className="skill-pill">{tech}</span>);
-
-const UserCard = () => (
+const UserCard = (props) => {
+  return (
   <div className="userCard">
-    <img src={userImage} alt="user" />
-    <h4>Lukasz Jozwik</h4>
-    <h5>Senior Developer, Poland</h5>
+    <img src={props.user.avatar} alt="user" />
+    <h4>{props.user.name}</h4>
+    <h5>{props.user.description}</h5>
 
-    <div className="skills">
-      <h4>Skills</h4>
-      {skillsFormatted}
-    </div>
+    <Skills skills={props.user.skills}/>
   </div>
-);
+)};
+
+const Skills = (props) => {
+  const skillList = props.skills.map((tech) => <span className="skill-pill" key={tech}>{tech}</span>);
+  return (<div className="skills">
+    <h4>Skills</h4>
+    <ul>{skillList}</ul>
+  </div>)
+}
 
 const techImages = [htmlLogo, cssLogo, jsLogo, reactLogo].map((logo) => (
-  <img src={logo} alt={logo}/>
+  <img src={logo} alt={logo} key={logo}/>
 ));
 
 const TechnologiesPanel = () => (
@@ -56,7 +64,7 @@ const Main = () => (
   <main>
     <div className="main-wrapper">
       <TechnologiesPanel />
-      <UserCard />
+      <UserCard user={userInfo}/>
     </div>
   </main>
 );
@@ -73,14 +81,18 @@ const Footer = () => (
 );
 
 // JSX element, app
-const App = () => (
+const App = () => {
+  const welcome = 'Welcome to 30 Days of React'
+  const title = 'Getting started with React'
+
+  return (  
   <div className="app">
-    <Header />
+    <Header welcome={welcome} title={title}/>
     <Main />
     <HexaColor />
     <Footer />
   </div>
-);
+)};
 
 const rootElement = document.getElementById("root");
 // we render the JSX element using the ReactDOM package
