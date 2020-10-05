@@ -80,15 +80,49 @@ const Footer = () => (
   </footer>
 );
 
+const Button = (props) => <button onClick={props.onClick}>{props.text}</button>
+
+const showDate = (time) => {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+
+  const month = months[time.getMonth()].slice(0, 3)
+  const year = time.getFullYear()
+  const date = time.getDate()
+  return ` ${month} ${date}, ${year}`
+}
+
 // JSX element, app
 const App = () => {
   const welcome = 'Welcome to 30 Days of React'
   const title = 'Getting started with React'
 
+  const greetPeople = () => {
+    alert('Welcome to 30 Day Of React Challange, 2020')
+  }
+
+  const handleTime = () => {
+    alert(showDate(new Date()))
+  }
+
   return (  
   <div className="app">
     <Header welcome={welcome} title={title}/>
     <Main />
+    <Button text='Greet People' onClick={greetPeople} />
+    <Button text='Show Time' onClick={handleTime} />
     <HexaColor />
     <Footer />
   </div>
