@@ -8,6 +8,7 @@ import jsLogo from "./images/js_logo.png";
 import reactLogo from "./images/react_logo.png";
 
 import { getColor, HexaColor } from "./HexaColor";
+import Counter from "./Counter";
 
 // JSX element, header
 const Header = ({ welcome, title }) => {
@@ -114,6 +115,7 @@ const App = () => {
         handleTime={handleTime}
         greetPeople={greetPeople}
       />
+      <Counter />
       <HexaColor color={color} />
       <Footer text='Lukasz Jozwik' copyRight={date} />
     </div>
