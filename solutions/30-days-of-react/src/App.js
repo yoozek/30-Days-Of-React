@@ -33,6 +33,7 @@ const App = () => {
   return (
     <div className="app">
       <Header welcome={welcome} title={title} />
+      {/* <EventsPlayground /> */}
       <Main
         techImages={techImages}
         user={user}
