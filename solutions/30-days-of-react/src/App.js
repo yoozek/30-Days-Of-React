@@ -9,6 +9,7 @@ import cssLogo from "./images/css_logo.png";
 import jsLogo from "./images/js_logo.png";
 import reactLogo from "./images/react_logo.png";
 import { getColor, HexaColor } from './components/hexaColor/HexaColor';
+import CatsCounter from './components/catsCounter/CatsCounter';
 
 const App = () => {
   const welcome = "Welcome to 30 Days of React";
@@ -40,6 +41,7 @@ const App = () => {
         handleTime={handleTime}
         greetPeople={greetPeople}
       />
+      <CatsCounter />
       <Counter />
       <HexaColor color={color} />
       <Footer text='Lukasz Jozwik' copyRight={date} />
