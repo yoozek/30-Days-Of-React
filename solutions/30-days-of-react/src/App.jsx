@@ -13,6 +13,7 @@ import EventsPlayground from './components/eventsPlayground/EventsPlayground';
 import Button from './components/button/Button';
 import FormsPlayground from './components/formsPlayground/FormsPlayground';
 import ComponentsLifecycle from './components/componentsLifecycle/ComponentsLifecycle';
+import CatsCounter from './components/catsCounter/CatsCounter';
 
 const App = () => {
   const welcome = "Welcome to 30 Days of React";
@@ -63,6 +64,9 @@ const App = () => {
       <li>
         <NavLink to='/challenges'>Challenges</NavLink>
       </li>
+      <li>
+        <NavLink to='/catsCounter'>Cats Counter</NavLink>
+      </li>
     </ul>
   )
 
@@ -75,6 +79,7 @@ const App = () => {
           <Route path='/about' component={About} />
           <Route path='/contact' component={Contact} />
           <Route path='/challenges' component={Challenges} />
+          <Route path='/catsCounter' component={CatsCounter} />
           <Route path='/' component={Home} />
           <Route path='*' exact component={NotFound} />
         </Switch>
